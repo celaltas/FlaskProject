@@ -1,0 +1,25 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+
+.container {
+
+    margin-top: 100px;
+}
+
+.table {
+
+    margin-top: 20px;
+}
+
+.alert {
+    margin-top: 20px;
+    font-size: 18px;
+    
+}
+
+
+

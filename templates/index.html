@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-widht, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Todo App</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap&subset=latin-extended" rel="stylesheet">
+        <link rel="stylesheet" href="static/style.css">
+
+    </head>
+    <body>
+        <div class="container">
+
+            <h3>Todo List</h3>
+            <hr>
+
+            <form action="/add" method="POST">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Todo Title</label>
+                    <input type="text" class="form-control" name="title" id="formGroupExampleInput" placeholder="Enter title ...">
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Todo Content</label>
+                    <textarea type="text" class="form-control" name="content" id="formGroupExampleInput2" placeholder="Enter  content ..."></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-success">Add</button>
+            </form>
+            {% if todos == [] %}
+                <div  class="alert alert-danger" role="alert">You have no any Todo ...</div>
+            {% else %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            {% for todo in todos %}
+                                <tr>
+                                    <th scope="row">{{todo.id}}</th>
+                                    <td><a href="/detail/{{todo.id}}">{{todo.title}}</a></td>
+                                    <td>{{todo.content}}</td>
+                                    {% if todo.complete==True %}
+                                        <td>Completed</td>
+                                    {% else %}
+                                        <td>Not Completed</td>
+                                    {% endif %}
+                                    <td><a href="/update/{{todo.id}}" class="btn btn-primary">Update</a></td>
+                                    <td><a href="/delete/{{todo.id}}" class="btn btn-warning">Delete</a></td>
+                                </tr>
+                            {% endfor %}
+                    </tbody>
+
+                    
+                </table>
+            {% endif %}
+
+        </div>
+        
+        
+
+    </body>
+
+</html>
